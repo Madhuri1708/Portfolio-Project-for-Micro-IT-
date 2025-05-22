@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Professional Portfolio</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+    }
+    body {
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0d47a1;
+      color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffca28;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      font-size: 1rem;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #ffca28;
+      border-bottom: 2px solid #ffca28;
+      padding-bottom: 2px;
+    }
+
+    main {
+      margin-top: 70px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+    }
+
+    /* Hero Section Full Width */
+    #hero {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: white;
+      padding: 8rem 4rem 6rem;
+      text-align: center;
+      border-radius: 0;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    #hero .hero-text {
+      max-width: 600px;
+      text-align: left;
+      flex: 1 1 350px;
+    }
+    #hero h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    #hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    #hero button {
+      background: #ffca28;
+      border: none;
+      padding: 1.2rem 3.5rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0 4px 14px rgba(255, 202, 40, 0.6);
+    }
+    #hero button:hover {
+      background: #f2b900;
+      box-shadow: 0 6px 20px rgba(242, 185, 0, 0.9);
+    }
+    #hero img {
+      width: 300px;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      flex: 1 1 300px;
+    }
+
+    /* Sections styling */
+    section {
+      margin: 5rem 0;
+      padding: 0 1rem;
+    }
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #0d47a1;
+      border-bottom: 3px solid #ffca28;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+    section p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skills */
+    #skills ul {
+      list-style: none;
+      max-width: 700px;
+    }
+    #skills li {
+      margin-bottom: 1.5rem;
+    }
+    #skills h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+      color: #0d47a1;
+    }
+    .skill-bar {
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 16px;
+      margin-bottom: 6px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .skill-level {
+      background: #ffca28;
+      height: 100%;
+      width: 0;
+      transition: width 1s ease-in-out;
+      border-radius: 20px;
+    }
+
+    /* Achievements */
+    #achievements ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      max-width: 700px;
+      font-size: 1.1rem;
+    }
+    #achievements li {
+      margin-bottom: 0.75rem;
+    }
+
+    /* Projects */
+    .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 900px;
+      justify-content: center;
+    }
+    .project-card {
+      background: white;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 280px;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #0d47a1;
+    }
+    .project-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .project-card a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #ffca28;
+    }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact */
+    #contact .contact-container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }
+    #contact .contact-info {
+      flex: 1 1 300px;
+      background: white;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+    #contact .contact-info h3 {
+      margin-bottom: 1rem;
+      color: #0d47a1;
+    }
+    #contact .contact-info p {
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+    #contact .social-links a {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      color: #0d47a1;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+    #contact .social-links a:hover {
+      color: #ffca28;
+    }
+    #contact form {
+      flex: 1 1 400px;
+      background: white;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    #contact form input,
+    #contact form textarea {
+      margin-bottom: 1.2rem;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+    #contact form input:focus,
+    #contact form textarea:focus {
+      outline: none;
+      border-color: #0d47a1;
+    }
+    #contact form button {
+      padding: 1rem;
+      background: #0d47a1;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #contact form button:hover {
+      background: #1976d2;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      #hero {
+        flex-direction: column;
+        padding: 4rem 2rem 3rem;
+        text-align: center;
+      }
+      #hero .hero-text {
+        max-width: 100%;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      #hero img {
+        width: 200px;
+        margin: 0 auto;
+      }
+      main {
+        padding: 0 1rem;
+        max-width: 100%;
+      }
+      .project-list {
+        justify-content: center;
+      }
+      #contact .contact-container {
+        flex-direction: column;
+      }
+      #contact form,
+      #contact .contact-info {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="#hero" class="logo">My Site</a>
+  <nav>
+    <a href="#hero" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm Madhuri</h1>
+      <p>Passionate software developer and data enthusiast focused on crafting beautiful, efficient, and scalable solutions.</p>
+      <button onclick="window.location.href='#contact'">Get In Touch</button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>💡 Aspiring AI & Data Structures Engineer | Python & SQL Enthusiast</p>
+    <p>
+      I am G. Madhuri, a passionate student specializing in Artificial Intelligence and Data Structures.
+      I continuously strive to enhance my skills in Python and SQL to build a strong technical foundation.
+      Dedicated to growing both my technical expertise and communication skills, I am actively seeking learning opportunities,
+      internships, and projects that challenge me to excel.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>
+        <h3>Python</h3>
+        <div class="skill-bar"><div class="skill-level" data-level="50%"></div></div>
+      </li>
+      <li>
+        <h3>SQL</h3>
+        <div class="skill-bar"><div class="skill-level" data-level="50%"></div></div>
+      </li>
+      <li>
+        <h3>JavaScript</h3>
+        <div class="skill-bar"><div class="skill-level" data-level="50%"></div></div>
+      </li>
+      <li>
+        <h3>HTML & CSS</h3>
+        <div class="skill-bar"><div class="skill-level" data-level="50%"></div></div>
+      </li>
+      <li>
+        <h3>Django</h3>
+        <div class="skill-bar"><div class="skill-level" data-level="50%"></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>🏅 Winner of Hans India Medal 2023</li>
+      <li>🏃‍♀️ Participant in The Global Grace Cancer Run 2023 & The Fin Run 2024</li>
+      <li>🎖️ Recognized for academic excellence and consistent high performance</li>
+      <li>🎓 Active contributor to college projects and student mentoring programs</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>A responsive personal website showcasing my skills, projects, and contact details.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">View Source</a>
+      </div>
+      <div class="project-card">
+        <h3>Tic Tac Toe Game</h3>
+        <p>A fun two-player game built using HTML, CSS, and JavaScript with a clean UI and winning logic.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">View Source</a>
+      </div>
+      <div class="project-card">
+        <h3>To-Do List App</h3>
+        <p>A responsive task management app using local storage, built with HTML, CSS, and JavaScript.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">View Source</a>
+      </div>
+      <div class="project-card">
+        <h3>Responsive Landing Page</h3>
+        <p>A modern, mobile-first landing page layout built using HTML and CSS Flexbox/Grid.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">View Source</a>
+      </div>
+      <div class="project-card">
+        <h3>Stopwatch</h3>
+        <p>A simple stopwatch timer application with start, stop, and reset functionality.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer">View Source</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Get in touch</h3>
+        <p>Email: madhuri@example.com</p>
+        <p>Phone: +91 9876543210</p>
+        <div class="social-links">
+          <a href="#" title="GitHub" aria-label="GitHub" target="_blank">🐙</a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn" target="_blank">🔗</a>
+          <a href="#" title="Twitter" aria-label="Twitter" target="_blank">🐦</a>
+        </div>
+      </div>
+      <form>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Animate skill bars when in viewport
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top <= window.innerHeight && rect.bottom >= 0;
+  }
+  function animateSkills() {
+    const skills = document.querySelectorAll('.skill-level');
+    skills.forEach(skill => {
+      if (isInViewport(skill) && !skill.classList.contains('animated')) {
+        skill.style.width = skill.getAttribute('data-level');
+        skill.classList.add('animated');
+      }
+    });
+  }
+  window.addEventListener('scroll', animateSkills);
+  window.addEventListener('load', animateSkills);
+</script>
+
+</body>
+</html>
